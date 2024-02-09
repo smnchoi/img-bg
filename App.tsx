@@ -135,14 +135,72 @@ const SvgBackground = (props: SvgBackgroundProps) => {
   );
 };
 
+interface SvgBackgroundClipPathProps extends SvgProps {
+  backgroundColor?: ImageStyle["backgroundColor"];
+  children: ReactNode;
+}
+const SvgBackgroundClipPath = (props: SvgBackgroundClipPathProps) => {
+  const { backgroundColor = "#000000", children, ...svgProps } = props;
+  return (
+    <View
+      style={{
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        // alignSelf: "flex-start",
+        // alignItems: "center",
+        backgroundColor: "red",
+        padding: 10,
+        // zIndex: -1,
+        // elevation: -1,
+      }}
+    >
+      <Svg
+        // xmlns="http://www.w3.org/2000/svg"
+        // width="402.000000pt"
+        // height="926.000000pt"
+        // preserveAspectRatio="xMidYMid meet"
+        width={IMAGE_WIDTH}
+        height={IMAGE_HEIGHT}
+        viewBox="0 0 402.000000 926.000000"
+        preserveAspectRatio="none"
+        color={backgroundColor}
+        style={{ position: "absolute" }}
+        {...svgProps}
+      >
+        <Defs>
+          <ClipPath id="clip">
+            {props.children}
+            <G
+              transform="translate(0.000000,926.000000) scale(0.100000,-0.100000)"
+              fill="currentColor"
+              stroke="none"
+            >
+              <Path d="M0 4630 l0 -4630 2010 0 2010 0 0 376 c0 428 3 412 -85 499 -27 28 -80 68 -117 88 -125 69 -197 166 -219 295 -30 168 59 331 229 422 81 43 153 121 175 190 16 49 17 300 17 3721 l0 3669 -2010 0 -2010 0 0 -4630z" />
+            </G>
+          </ClipPath>
+        </Defs>
+
+        {/* <G
+          transform="translate(0.000000,926.000000) scale(0.100000,-0.100000)"
+          stroke="none"
+          // clipPath="url(#clip)"
+        >
+          <Path d="M0 4630 l0 -4630 2010 0 2010 0 0 376 c0 428 3 412 -85 499 -27 28 -80 68 -117 88 -125 69 -197 166 -219 295 -30 168 59 331 229 422 81 43 153 121 175 190 16 49 17 300 17 3721 l0 3669 -2010 0 -2010 0 0 -4630z" />
+        </G> */}
+      </Svg>
+    </View>
+  );
+};
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <SvgBackground backgroundColor={"orange"}>
-        <Image
+      <SvgBackgroundClipPath backgroundColor={"orange"}>
+        {/* <Image
           style={{
             width: "100%",
-            height: "60%",
+            height: "100%",
             backgroundColor: "black",
             zIndex: 10,
           }}
@@ -150,7 +208,7 @@ export default function App() {
           source={{
             uri: "https://techcrunch.com/wp-content/uploads/2019/09/Starship-Mk1-Day.jpg?w=1390&crop=1",
           }}
-        />
+        /> */}
         <Text
           style={{
             color: "white",
@@ -167,7 +225,7 @@ export default function App() {
           style={{
             color: "white",
             padding: 10,
-            paddingRight: 40,
+            // paddingRight: 40,
             lineHeight: 20,
           }}
         >
@@ -208,7 +266,16 @@ export default function App() {
           is not uncommon for business rivals to team up in the world of rocket
           launches. Some Amazon satellites will still ride on a large rocket
         </Text>
-      </SvgBackground>
+      </SvgBackgroundClipPath>
+
+      {/* <View style={{ width: 100, height: 20, backgroundColor: "red" }} />
+      <Trs width={120} height={200} tintColor="blue" />
+      <Image
+        style={{ width: 120, height: 200 }}
+        source={require("./assets/punch-hole-frame-vector-svg-trans.svg")}
+        tintColor={"#c300b0"}
+      />
+      <View style={{ width: 100, height: 20, backgroundColor: "red" }} /> */}
     </View>
   );
 }
