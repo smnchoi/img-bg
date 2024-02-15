@@ -9,19 +9,8 @@ import {
   Image,
   ImageStyle,
 } from "react-native";
-import Svg, {
-  SvgProps,
-  Path,
-  G,
-  Defs,
-  LinearGradient,
-  Stop,
-  Mask,
-  Circle,
-  Rect,
-  ForeignObject,
-} from "react-native-svg";
-import MaskedView from "@react-native-masked-view/masked-view";
+import Svg, { SvgProps, Path, G, ClipPath, Defs, Rect } from "react-native-svg";
+import Trs from "./assets/punch-hole-frame-vector-svg-trans.svg";
 
 const images = {
   full: require("./assets/punch_hole_full_view.png"),
@@ -146,171 +135,80 @@ const SvgBackground = (props: SvgBackgroundProps) => {
   );
 };
 
-interface MaskedViewBackground {
-  backgroundColor?: ImageStyle["backgroundColor"];
-  children: ReactNode;
-}
-const MaskedViewBackground = (props: MaskedViewBackground) => {
-  const { backgroundColor = "#000000", children } = props;
-  return (
-    <MaskedView
-      style={{ flex: 1, flexDirection: "row", height: "100%" }}
-      maskElement={
-        <View>
-          <Text
-            style={{
-              color: "white",
-              padding: 10,
-              paddingRight: 40,
-              lineHeight: 20,
-            }}
-          >
-            Amazon just inked a deal with chief competitor and Elon Musk-helmed
-            SpaceX to launch internet-beaming satellites — a move that comes
-            even as Amazon founder Jeff Bezos pursues his own space dreams with
-            his own rocket company, Blue Origin, and as SpaceX builds its own
-            internet constellation. While Musk and Bezos have notoriously been
-            publicly competitive and have a history of openly sparring on social
-            media, with Musk regularly making crude jokes about Bezos and Blue
-            Origin, it is not uncommon for business rivals to team up in the
-            world of rocket launches. Some Amazon satellites will still ride on
-            a large rocket Amazon just inked a deal with chief competitor and
-            Elon Musk-helmed SpaceX to launch internet-beaming satellites — a
-            move that comes even as Amazon founder Jeff Bezos pursues his own
-            space dreams with his own rocket company, Blue Origin, and as SpaceX
-            builds its own internet constellation. While Musk and Bezos have
-            notoriously been publicly competitive and have a history of openly
-            sparring on social media, with Musk regularly making crude jokes
-            about Bezos and Blue Origin, it is not uncommon for business rivals
-            to team up in the world of rocket launches. Some Amazon satellites
-            will still ride on a large rocket Amazon just inked a deal with
-            chief competitor and Elon Musk-helmed SpaceX to launch
-            internet-beaming satellites — a move that comes even as Amazon
-            founder Jeff Bezos pursues his own space dreams with his own rocket
-            company, Blue Origin, and as SpaceX builds its own internet
-            constellation. While Musk and Bezos have notoriously been publicly
-            competitive and have a history of openly sparring on social media,
-            with Musk regularly making crude jokes about Bezos and Blue Origin,
-            it is not uncommon for business rivals to team up in the world of
-            rocket launches. Some Amazon satellites will still ride on a large
-            rocket Amazon just inked a deal with chief competitor and Elon
-            Musk-helmed SpaceX to launch internet-beaming satellites — a move
-            that comes even as Amazon founder Jeff Bezos pursues his own space
-            dreams with his own rocket company, Blue Origin, and as SpaceX
-            builds its own internet constellation. While Musk and Bezos have
-            notoriously been publicly competitive and have a history of openly
-            sparring on social media, with Musk regularly making crude jokes
-            about Bezos and Blue Origin, it is not uncommon for business rivals
-            to team up in the world of rocket launches. Some Amazon satellites
-            will still ride on a large rocket
-          </Text>
-        </View>
-      }
-    >
-      {/* <View style={{ flex: 1, height: "100%", backgroundColor: "#324376" }} />
-      <View style={{ flex: 1, height: "100%", backgroundColor: "#F5DD90" }} />
-      <View style={{ flex: 1, height: "100%", backgroundColor: "#F76C5E" }} />
-      <View style={{ flex: 1, height: "100%", backgroundColor: "#e1e1e1" }} /> */}
-      {/* <Svg
-        // xmlns="http://www.w3.org/2000/svg"
-        // width="402.000000pt"
-        // height="926.000000pt"
-        // preserveAspectRatio="xMidYMid meet"
-        width={IMAGE_WIDTH}
-        height={IMAGE_HEIGHT}
-        viewBox="0 0 402.000000 926.000000"
-        preserveAspectRatio="none"
-        color={backgroundColor}
-        style={{ position: "absolute" }}
-        // {...svgProps}
-      >
-        <G
-          transform="translate(0.000000,926.000000) scale(0.100000,-0.100000)"
-          fill="currentColor"
-          stroke="none"
-        >
-          <Path d="M0 4630 l0 -4630 2010 0 2010 0 0 376 c0 428 3 412 -85 499 -27 28 -80 68 -117 88 -125 69 -197 166 -219 295 -30 168 59 331 229 422 81 43 153 121 175 190 16 49 17 300 17 3721 l0 3669 -2010 0 -2010 0 0 -4630z" />
-        </G>
-      </Svg> */}
-      {/* 
-      <View
-        style={{
-          width: 400,
-          height: 800,
-          borderRadius: 400,
-          flex: 1,
-          backgroundColor: "red",
-        }}
-      /> */}
-
-      <Image
-        source={images.partial}
-        resizeMode="stretch"
-        style={styles.partialImage}
-      />
-    </MaskedView>
-  );
-};
-
 export default function App() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        width: "100%",
-      }}
-    >
-      <Svg height="50%">
-        <Defs>
-          <LinearGradient
-            id="Gradient"
-            gradientUnits="userSpaceOnUse"
-            x1="0"
-            y1="0"
-            x2="800"
-            y2="0"
-          >
-            <Stop offset="0" stopColor="white" stopOpacity="0.2" />
-            <Stop offset="1" stopColor="white" stopOpacity="1" />
-          </LinearGradient>
-          <Mask
-            id="Mask"
-            maskUnits="userSpaceOnUse"
-            x="0"
-            y="0"
-            width="800"
-            height="300"
-          >
-            <Rect x="0" y="0" width="800" height="300" fill="url(#Gradient)" />
-          </Mask>
-        </Defs>
-        <G mask="url(#Mask)">
-          <Circle cx={50} cy={70} r={65} />
-          <ForeignObject x={50} y={0} width={100} height={100}>
-            <View style={{ width: 200, height: 400, transform: [] }}>
-              <Image
-                style={{ width: 200, height: 200, backgroundColor: "red" }}
-                source={{
-                  uri: "https://picsum.photos/200/200",
-                }}
-              />
-            </View>
-          </ForeignObject>
-          <ForeignObject x={55} y={5} width={100} height={100}>
-            <View style={{ width: 200, height: 400, transform: [] }}>
-              <Text style={{ color: "blue" }}>Testing</Text>
-              <Text style={{ color: "green" }}>Testing2</Text>
-              <Text style={{ color: "green" }}>Testing2</Text>
-              <Text style={{ color: "green" }}>Testing2</Text>
-              <Text style={{ color: "green" }}>Testing2</Text>
-              <Text style={{ color: "green" }}>Testing2</Text>
-              <Text style={{ color: "green" }}>Testing2</Text>
-              <Text style={{ color: "green" }}>Testing2</Text>
-            </View>
-          </ForeignObject>
-        </G>
-      </Svg>
+    <View style={styles.container}>
+      <SvgBackground backgroundColor={"orange"}>
+        <Image
+          style={{
+            width: "100%",
+            height: "60%",
+            backgroundColor: "black",
+            zIndex: 10,
+          }}
+          resizeMode="cover"
+          source={{
+            uri: "https://techcrunch.com/wp-content/uploads/2019/09/Starship-Mk1-Day.jpg?w=1390&crop=1",
+          }}
+        />
+        <Text
+          style={{
+            color: "white",
+            padding: 10,
+            lineHeight: 20,
+            fontWeight: "bold",
+            zIndex: 2,
+          }}
+        >
+          Amazon taps SpaceX for satellite launch even though Jeff Bezos is
+          right there
+        </Text>
+        <Text
+          style={{
+            color: "white",
+            padding: 10,
+            paddingRight: 40,
+            lineHeight: 20,
+          }}
+        >
+          Amazon just inked a deal with chief competitor and Elon Musk-helmed
+          SpaceX to launch internet-beaming satellites — a move that comes even
+          as Amazon founder Jeff Bezos pursues his own space dreams with his own
+          rocket company, Blue Origin, and as SpaceX builds its own internet
+          constellation. While Musk and Bezos have notoriously been publicly
+          competitive and have a history of openly sparring on social media,
+          with Musk regularly making crude jokes about Bezos and Blue Origin, it
+          is not uncommon for business rivals to team up in the world of rocket
+          launches. Some Amazon satellites will still ride on a large rocket
+          Amazon just inked a deal with chief competitor and Elon Musk-helmed
+          SpaceX to launch internet-beaming satellites — a move that comes even
+          as Amazon founder Jeff Bezos pursues his own space dreams with his own
+          rocket company, Blue Origin, and as SpaceX builds its own internet
+          constellation. While Musk and Bezos have notoriously been publicly
+          competitive and have a history of openly sparring on social media,
+          with Musk regularly making crude jokes about Bezos and Blue Origin, it
+          is not uncommon for business rivals to team up in the world of rocket
+          launches. Some Amazon satellites will still ride on a large rocket
+          Amazon just inked a deal with chief competitor and Elon Musk-helmed
+          SpaceX to launch internet-beaming satellites — a move that comes even
+          as Amazon founder Jeff Bezos pursues his own space dreams with his own
+          rocket company, Blue Origin, and as SpaceX builds its own internet
+          constellation. While Musk and Bezos have notoriously been publicly
+          competitive and have a history of openly sparring on social media,
+          with Musk regularly making crude jokes about Bezos and Blue Origin, it
+          is not uncommon for business rivals to team up in the world of rocket
+          launches. Some Amazon satellites will still ride on a large rocket
+          Amazon just inked a deal with chief competitor and Elon Musk-helmed
+          SpaceX to launch internet-beaming satellites — a move that comes even
+          as Amazon founder Jeff Bezos pursues his own space dreams with his own
+          rocket company, Blue Origin, and as SpaceX builds its own internet
+          constellation. While Musk and Bezos have notoriously been publicly
+          competitive and have a history of openly sparring on social media,
+          with Musk regularly making crude jokes about Bezos and Blue Origin, it
+          is not uncommon for business rivals to team up in the world of rocket
+          launches. Some Amazon satellites will still ride on a large rocket
+        </Text>
+      </SvgBackground>
     </View>
   );
 }
